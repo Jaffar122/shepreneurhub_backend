@@ -72,7 +72,7 @@ router.post("/login", async (req, res) => {
       email,
     ]);
     if (rows.length === 0) {
-      console.log("No user found with email:", email);
+      console.log("No user found with ememailail:", );
       return res.status(400).json({ msg: "Invalid credentials" });
     }
 
@@ -89,11 +89,11 @@ router.post("/login", async (req, res) => {
     const token = jwt.sign(payload, secret, { expiresIn: "1h" });
 
     console.log("Login successful for user:", email);
-    res.json({ token });
+    res.json({ token:token,username:payload.user.name });
   } catch (err) {
     console.error("Server error:", err.message);
     res.status(500).send("Server error");
-  }
+  } 
 });
 
 module.exports = router;
